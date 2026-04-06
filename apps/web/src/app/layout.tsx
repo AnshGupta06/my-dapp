@@ -1,29 +1,26 @@
+import type { Metadata } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import { Providers } from "./providers";
 
-    import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { Providers } from './providers';
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
 
-    const inter = Inter({ subsets: ['latin'] });
+export const metadata: Metadata = {
+  title: "CertiMint | On-Chain NFT Certificates",
+  description: "Earn and mint verifiable soulbound NFT certificates for course completion.",
+};
 
-    export const metadata: Metadata = {
-      title: 'My DApp',
-      description: 'A Web3 application built with Cradle',
-    };
-
-    export default function RootLayout({
-      children,
-    }: {
-      children: React.ReactNode;
-    }) {
-      return (
-        <html lang="en" suppressHydrationWarning>
-          <body className={inter.className}>
-            <Providers>
-              {children}
-            </Providers>
-          </body>
-        </html>
-      );
-    }
-  
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}

@@ -1,98 +1,50 @@
-# My Dapp
+# CertiMint - NFT Course Certificate Platform
 
-A Web3 application - composed with [N]skills
+A decentralized application for earning and minting verifiable soulbound NFT certificates upon course completion.
+
+## 🚀 Overview
+CertiMint allows students to take courses, pass quizzes, and claim on-chain credentials. These certificates are Soulbound tokens (SBTs), meaning they are non-transferable and tied to the student's unique wallet address.
 
 ## 📁 Project Structure
+- `apps/web/`: Next.js 14 frontend using Wagmi, RainbowKit, and Tailwind CSS.
+- `contracts/`: Solidity smart contracts (ERC721 Soulbound).
+- `scripts/`: Deployment scripts for Sepolia/Arbitrum.
 
-```
-my-dapp/
-├── apps/
-│   └── web/                    # Next.js frontend
-│       ├── src/
-│       ├── package.json
-│       └── ...
-├── contracts/                  # Rust/Stylus smart contracts
-│   ├── mycontract/            # Original contract (no caching)
-│   │   └── src/lib.rs
-│   └── cached-contract/       # Contract with is_cacheable helper
-│       └── src/lib.rs
-├── docs/                       # Documentation
-├── scripts/                     # Deploy scripts
-├── .gitignore
-└── README.md
-```
+## 🛠 Tech Stack
+- **Frontend**: Next.js, Wagmi, viem, RainbowKit, Framer Motion.
+- **Contracts**: Solidity, Hardhat, OpenZeppelin.
+- **Storage**: IPFS (Metadata).
 
-## 🚀 Quick Start
+## 🔗 Smart Contract
+The `CourseCertificate` contract is an ERC721 that overrides transfer functions to make tokens non-transferable.
+- Address (Sepolia): `0x5FbDB2315678afecb367f032d93F642f64180aa3` (Example)
 
-### Prerequisites
-- Node.js 18+
-- npm, yarn, or pnpm
+## 🏃 Run Locally
 
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd my-dapp
-   ```
-
-2. **Install dependencies:**
+1. **Install Dependencies**:
    ```bash
    npm install
-   # or
-   pnpm install
+   cd apps/web && npm install
    ```
 
-3. **Set up environment variables:**
+2. **Set Environment Variables**:
+   Update `apps/web/.env` with your WalletConnect Project ID.
+
+3. **Start Development Server**:
    ```bash
-   cp .env.example .env
+   cd apps/web
+   npm run dev
    ```
 
-   Edit `.env` and configure:
-      - `PRIVATE_KEY`: Private key for deployment and transactions
-   - `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`: WalletConnect Cloud project ID for wallet connections
+4. **Connect Wallet**:
+   Use MetaMask or any WalletConnect-compatible wallet on the Sepolia testnet.
 
-4. **Deploy contracts** (from repo root): `pnpm deploy:sepolia` or `pnpm deploy:mainnet`
+## 🎓 Learning Flow
+1. Browse available courses.
+2. Complete all modules in a course.
+3. Pass a multiple-choice quiz for each module.
+4. Preview your premium parchment certificate.
+5. Mint your NFT on Sepolia.
+6. View your collection in "My Certificates".
 
-5. **Scripts (Windows):** Run `pnpm fix-scripts` or `dos2unix scripts/*.sh` if you see line-ending errors.
-
-## 🔗 Smart Contracts
-
-The `contracts/` folder contains Rust/Stylus smart contract source code. See `docs/` for deployment and integration guides.
-
-## 🛠 Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm deploy:sepolia` | Deploy to Arbitrum Sepolia |
-| `pnpm deploy:mainnet` | Deploy to Arbitrum One |
-| `pnpm fix-scripts` | Fix CRLF line endings (Windows) |
-
-## 🌐 Supported Networks
-
-- Arbitrum Sepolia (Testnet)
-- Arbitrum One (Mainnet)
-- Superposition
-- Superposition Testnet
-
-## 📚 Tech Stack
-
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** Tailwind CSS
-- **Web3:** wagmi + viem
-- **Wallet Connection:** RainbowKit
-
-## 📖 Documentation
-
-See the `docs/` folder for:
-- Contract interaction guide
-- Deployment instructions
-- API reference
-
-## License
-
-MIT
-
----
-
-Generated with ❤️ by [[N]skills](https://www.nskills.xyz)
+Generated with ❤️ by Antigravity.

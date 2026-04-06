@@ -2,34 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-    :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 245, 245, 245;
+@layer base {
+  :root {
+    --background: 222 47% 8%; /* #0a0f1e */
+    --foreground: 210 40% 98%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217 91% 64%; /* #4f9cf9 */
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --accent: 262 83% 66%; /* purple */
+    --gold: 45 91% 61%; /* #f5c542 */
+  }
+
+  body {
+    @apply bg-[#0a0f1e] text-white selection:bg-[#4f9cf9]/30;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    font-family: 'Space Grotesk', sans-serif;
+  }
 }
 
-    
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
-      }
-    }
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
 
-    .dark {
-      --foreground-rgb: 255, 255, 255;
-      --background-start-rgb: 0, 0, 0;
-      --background-end-rgb: 0, 0, 0;
-    }
-    
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#4f9cf9] via-[#8b5cf6] to-[#f5c542] bg-clip-text text-transparent;
+  }
 
-    body {
-  color: rgb(var(--foreground-rgb));
+  .premium-shadow {
+    box-shadow: 0 0 40px rgba(79, 156, 249, 0.15);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 30px rgba(245, 197, 66, 0.2);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0f1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2542;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f9cf9;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
-    to bottom,
+    90deg,
     transparent,
-    rgb(var(--background-end-rgb))
-        )
-  rgb(var(--background-start-rgb));
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
 }
